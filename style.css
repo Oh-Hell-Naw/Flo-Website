@@ -61,13 +61,14 @@ body{
 }
 
 .seperator{
+    box-shadow: -1px -1px 10px rgb(170,170,170);
     max-width: 75%;
     color: black;
     max-height: 1%;
 }
 
 .shapes{
-    margin-top: 100px;
+    margin-top: 125px;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
@@ -93,7 +94,7 @@ body{
 }
 
 .arrow{
-    margin-top: 10%;
+    margin-top: 7.5%;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -167,10 +168,7 @@ body{
 .text-start{
     margin-left: 20%;
     margin-right: 20%;
-    background: rgb(255,255,255);
-    background: linear-gradient(45deg, rgb(180, 180, 180) 0%, rgba(0,0,0,1) 100%);
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgb(175,175,175);
 
     font-size: 24px;
     font-family: monospace;
@@ -319,15 +317,25 @@ body{
     }
 }
 
+@keyframes socials2{
+    from{
+        transform: translateX(500px);
+    }
+    to{
+        transform: translateX(0);
+    }
+}
+
+
 .socials{
     animation: socials ease-in-out both;
     animation-timeline: view();
-    animation-range: entry 0% cover 40%;
-    margin-top: 10%;
-    max-width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
+    animation-range: entry 0% cover 30%;
+    display: flex;
+    align-items: center;
     justify-content: center;
+    gap: 3em;
+    margin: 2em;
 }
 
 @keyframes socials_border_color{
@@ -345,16 +353,20 @@ body{
 .socials > * > .socials-picture{
     color: black;
     transition: all 0.5s ease-in-out;
+
     margin-left: 2.5%;
     margin-right: 2.5%;
     margin-bottom: 2.5%;
+
     padding: 25px;
     width: 128px;
     height: 128px;
+
     background-color: #4b4b4b;
     border-style: solid;
     border-width: 3px;
     border-radius: 3.5vh;
+
     animation-name: socials_border_color;
     animation-duration: 3s;
     animation-iteration-count: infinite;
