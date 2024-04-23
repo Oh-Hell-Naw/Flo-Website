@@ -4,6 +4,19 @@ html{
     scroll-behavior: smooth;
 }
 
+@keyframes xddd{
+    0%{
+        transform: scaleX(1)
+    }
+    100%{
+        transform:scaleX(5)
+    }
+}
+
+body.rotate{
+    animation: xddd 7s ease forwards;
+}
+
 @keyframes squareToCircle {
     0% {
         border-radius: 50% 50% 50% 50%;
