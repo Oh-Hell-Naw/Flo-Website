@@ -321,29 +321,7 @@ body{
     color: rgba(255,255,255,0.1);
 }
 
-@keyframes socials{
-    from{
-        transform: translateX(-500px)
-    }
-    to{
-        transform: translateX(0);
-    }
-}
-
-@keyframes socials2{
-    from{
-        transform: translateX(500px);
-    }
-    to{
-        transform: translateX(0);
-    }
-}
-
-
 .socials{
-    animation: socials ease-in-out both;
-    animation-timeline: view();
-    animation-range: entry 0% cover 30%;
     display: flex;
     align-items: center;
     justify-content: center;
