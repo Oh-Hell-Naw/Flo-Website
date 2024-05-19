@@ -266,7 +266,7 @@ body{
 }
 
 .container2{
-    margin-top: 100%;
+    margin-top: 10%;
 }
 
 .box{
@@ -398,6 +398,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    will-change: transform;
 }
 
 ohnbutton {
@@ -412,5 +413,76 @@ ohnbutton {
 @keyframes borderRotate {
 	100% {
 		--angle: 420deg;
+	}
+}
+
+.hypnosis {
+    display: flex;
+    max-height: 200px;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+}
+
+.circles {
+    width: 90px;
+    height: 90px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    position:absolute;
+    margin-top: 30%;
+}
+.one {
+    animation: circles 2.4s infinite linear;
+}
+.two {
+    animation: circles 2.4s infinite linear;
+    animation-delay: 0.3s;
+
+}
+.three {
+    animation: circles 2.4s infinite linear;
+    animation-delay: 0.6s;
+
+}
+.four {
+    animation: circles 2.4s infinite linear;
+    animation-delay: 0.9s;
+
+}
+.five {
+    animation: circles 2.4s infinite linear;
+    animation-delay: 1.2s;
+
+}
+.six {
+    animation: circles 2.4s infinite linear;
+    animation-delay: 1.5s;
+
+}
+.seven {
+    animation: circles 2.4s infinite linear;
+    animation-delay: 1.8s;
+
+}
+.eight {
+    animation: circles 2.4s infinite linear;
+    animation-delay: 2.1s;
+
+}
+.nine {
+    animation: circles 2.4s infinite linear;
+    animation-delay: 2.4s;
+
+}
+@keyframes circles {
+	from {
+		transform: scale(0.1);
+        display: none;
+	}
+	to {
+		transform: scale(6)
 	}
 }
