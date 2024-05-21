@@ -10,8 +10,10 @@
 }
 
 html{
+    overflow-x: hidden;
     scroll-behavior: smooth;
 }
+
 
 @keyframes xddd{
     0%{
@@ -53,16 +55,8 @@ body.rotate{
     }
 }
 
-a {
-    transition: all 0.5s ease-in-out;
+a{
     text-decoration: none;
-    color: black;
-}
-
-a:hover{
-    color: red;
-    font-weight: bolder;
-    transition: all 0.5s ease-in-out;
 }
 
 .logo_img{
@@ -74,6 +68,8 @@ a:hover{
 }
 
 body{
+    width: 100vw;
+    height: 100vh;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
     -moz-animation: fadein 3s; /* Firefox < 16 */
@@ -241,6 +237,26 @@ body{
     }
 }
 
+.overview-div{
+    margin-top: 10%;
+    height: 20vh;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.overview{
+    font-size: 48px;
+    text-align: center;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    animation-name: aAnimation;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear ;
+}
+
 .main-content > .text-start a{
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -394,21 +410,6 @@ body{
     animation-timing-function: linear ;
 }
 
-.ohnbtn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    will-change: transform;
-}
-
-ohnbutton {
-    font-size: 3vw;
-	margin: max(1rem, 3vw);
-	border: 0.35rem solid;
-	padding: 3vw;
-	border-image: conic-gradient(from var(--angle), var(--c2), var(--c1) 0.1turn, var(--c1) 0.15turn, var(--c2) 0.25turn) 30;
-	animation: borderRotate var(--d) linear infinite forwards;
-}
 
 @keyframes borderRotate {
 	100% {
@@ -416,7 +417,7 @@ ohnbutton {
 	}
 }
 
-.hypnosis {
+/* .hypnosis {
     display: flex;
     max-height: 200px;
     overflow: hidden;
@@ -485,4 +486,47 @@ ohnbutton {
 	to {
 		transform: scale(6)
 	}
+} */
+
+.overview-button{
+    transition: all 0.5s ease-in-out;
+    display: flex;
+    color: black;
+    font-size: 36px;
+    font-weight: bold;
+    justify-content: center;
+
+    width: 40vh;
+    height: 14vh;
+    align-items: center;
+
+    background-color: white;
+    border-style: solid;
+    border-color: black;
+    border-radius: 3.5vh;
+    border-width: 2px;
+    box-shadow: 0 6px 8px gray;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
 }
+
+.overview-button:hover{
+    transition: all 0.5s ease-in-out;
+    transform: translateY(7px);
+
+    color: white;
+    background-color: black;
+    box-shadow: none;
+}
+
+.footer{
+    margin-top: 5%;
+    color: black;
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5%;
+}
+
+/*                      index.html end                      */
+

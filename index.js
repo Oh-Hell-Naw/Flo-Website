@@ -1,3 +1,4 @@
+"use strict";
 let keyInputs = "";
 document.addEventListener("keydown", (event) => {
     keyInputs += event.key;
@@ -9,5 +10,6 @@ const funnyTextContainer = document.querySelector(".container2 > .box > div");
 for (let i = 1; i <= 32; i++) {
     const span = document.createElement("span");
     span.style.setProperty("--i", i.toString());
-    funnyTextContainer?.appendChild(span);
+    funnyTextContainer === null || funnyTextContainer === void 0 ? void 0 : funnyTextContainer.appendChild(span);
 }
+//# sourceMappingURL=index.js.map
