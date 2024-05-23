@@ -145,28 +145,17 @@ a {
     background-color: white;
   }
 }
-.overview {
-  margin-top: 10%;
-  height: 20vh;
-  display: grid;
-  align-items: center;
-  justify-content: center;
+.main-content > .text-start > .project {
+  font-size: 70px;
+  font-weight: bold;
 }
-.overview > .overview-button {
-  font-size: 48px;
-  text-align: center;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: anchor-base 4s linear infinite;
-}
-
-.main-content > .text-start a {
+.main-content > .text-start > .project > h3 {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: anchor-base 4s linear infinite;
   /*background: linear-gradient(90deg, rgba(119,0,255,0.4738270308123249) 0%, rgba(0,255,244,1) 100%);*/
 }
-.main-content > .text-start a:hover {
+.main-content > .text-start > .project > h3:hover {
   -webkit-text-stroke: 1px black;
   background-color: white;
   background-clip: text;
@@ -282,7 +271,21 @@ a {
   animation: anchor-base 4s linear infinite;
 }
 
-.overview-button {
+.overview {
+  margin-top: 10%;
+  height: 20vh;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+.overview > .overview-header {
+  animation: anchor-base 4s linear infinite;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  font-size: 48px;
+}
+.overview > .overview-button {
   transition: all 0.5s ease-in-out;
   display: flex;
   color: black;
@@ -298,7 +301,7 @@ a {
   box-shadow: 0 6px 8px gray;
   text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
 }
-.overview-button:hover {
+.overview > .overview-button:hover {
   transition: all 0.5s ease-in-out;
   transform: translateY(7px);
   color: white;
