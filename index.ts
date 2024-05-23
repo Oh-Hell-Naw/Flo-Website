@@ -7,7 +7,7 @@ document.addEventListener("keydown", (event) => {
 	document.body.classList.add("rotate");
 });
 
-const funnyTextContainer = document.querySelector(".container2 > .box > div");
+const funnyTextContainer = document.querySelector(".transition > div > div > div");
 
 for (let i = 1; i <= 32; i++) {
 	const span = document.createElement("span");
