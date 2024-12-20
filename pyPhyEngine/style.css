@@ -1,0 +1,257 @@
+* {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: white
+}
+
+header {
+    text-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    font-size: 3em;
+    font-weight: bolder;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+body {
+    line-height: 2em;
+    overflow-x: hidden;
+}
+
+pre {
+    position: relative;
+    padding: 10px;
+
+    border: solid 3px black;
+    border-radius: 15px;
+
+    background-color: #121212;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+blockquote {
+    position: relative;
+    margin: 16px;
+
+    border-radius: 10px;
+    background-color: #031a2f;
+
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.33em;
+}
+
+code {
+    font-family: monospace;
+    color: white
+}
+
+miniheader {
+    position: relative;
+    display: flex;
+    padding: 2vh;
+
+    color: white;
+    text-shadow: 0px 0px 50px rgb(0, 0, 0);
+
+    font-size: 2em;
+    font-weight: bold;
+}
+
+explain {
+    position: relative;
+    display: flex;
+    padding: 2vh;
+
+    color: #aaa;
+    text-shadow: 0px 0px 30px rgb(0, 0, 0);
+
+    font-size: 1.25em;
+    font-family: monospace;
+}
+
+::-webkit-scrollbar {
+    width: 0.5vw;
+}
+
+::-webkit-scrollbar-thumb {
+    transition: 0.5s all ease-in-out;
+    background: #aaa;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    transition: 0.5s all ease-in-out;
+    background: #416587;
+}
+
+::-webkit-scrollbar-track {
+    background: #05315b
+}
+
+.sidebar {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #05315b;
+}
+
+.sidebar > header {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.item:hover {
+    transition: all 0.5s ease-in-out;
+
+    background-color: #416587;
+    border: solid 0.5vh white;
+}
+
+.item {
+    transition: all 0.5s ease-in-out;
+
+    display: flex;           
+    align-items: center;     
+    justify-content: right;
+    text-align: center;
+
+    height: 7.5vh;
+    border: solid 0.5vh transparent;
+    background-color: #05315b;
+}
+
+.item > a {
+    color: white;
+    text-decoration: none;
+    padding: 1vh;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.item-header {
+    color: white;
+    text-align: center;
+    margin: 2.5vh;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.page-content {
+    position: relative;
+
+    padding-left: 10vw;
+    padding-right: 10vw;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+
+    margin-left: 20vw;
+    background-color: #05223e;
+}
+
+.page-content * p, li {
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    font-size: 1.33em
+}
+
+
+.toolbar {
+    position: relative;
+
+    margin-left: 20vw;
+    padding: 1.5vh;
+
+    background-color: #031a2f;
+}
+
+.footer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 16px;
+    
+    padding: 3vh;
+    background-color: #031a2f;
+    margin-left: 20vw;
+}
+
+.footer > p {
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #aaa
+}
+
+.footer > a {
+    transition: all 0.5s ease-in-out;
+    text-decoration: none;
+
+    color: #8ac6ff
+}
+
+.footer > a:hover {
+    transition: all 0.5s ease-in-out;
+
+    color: #ffffff
+}
+
+.toolbar{
+    position: relative;
+    display: flex;
+
+    gap: 16px;
+    align-items: center;
+    justify-content: right;
+}
+
+.toolbar * a {
+    transition: all 0.5s ease-in-out;
+    text-decoration: none;
+
+    color: white
+}
+
+.toolbar * a:hover{
+    transition: all 0.5s ease-in-out;
+
+    color: #8ac6ff
+}
+
+.item-toolbar {
+    position: relative;
+    display: flex;
+
+    width: 128px;
+    height: 32px;
+    gap: 8px;
+    
+    align-items: center;
+    text-align: center;
+}
+
+.logo-toolbar {
+    width: 32px;
+    height: 32px
+}
+
+.video {
+    position: relative;
+    border: #8ac6ff solid 5px;
+}
+
+.video-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5vh;
+}

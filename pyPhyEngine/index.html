@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Prism CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+
+    <!-- Prism JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+    <title>PyPhyEngine 1.0 - Documentation</title>
+</head>
+<body>
+    <div class="sidebar">
+        <header>PyPhyEngine Documentation</header>
+
+        <div class="item-header">Start</div>
+        <div class="item"> <a href="#welcome">Welcome!</a> </div>
+        <div class="item"> <a href="#start">How it started</a> </div>
+        <div class="item"> <a href="#going">How it's going</a> </div>
+        <div class="item-header">Getting Started</div>
+        <div class="item"> <a href="#POnSO">PhysicsObjects & StaticObjects</a> </div>
+        <div class="item"> <a href="#PhysicsRoom">PhysicsRoom</a> </div>
+        <div class="item"> <a href="#collisions">Collisions & Recording</a> </div>
+        <div class="item-header">API Reference</div>
+        <div class="item"> <a href="#init">pyPhyEngine</a> </div>
+        <div class="item"> <a href="#collider">pyPhyEngine.collider</a> </div>
+        <div class="item"> <a href="#generator">pyPhyEngine.generator</a> </div>
+        <div class="item"> <a href="#models">pyPhyEngine.models</a> </div>
+        <div class="item"> <a href="#renderer">pyPhyEngine.renderer</a> </div>
+        <div class="item"> <a href="#utils">pyPhyEngine.utils</a> </div>
+        <div class="item"> <a href="#vectors">pyPhyEngine.vectors</a> </div>
+        <div class="item"> <a href="#video">pyPhyEngine.video</a> </div>
+    </div>
+
+    <div class="toolbar">
+        <div class="item-toolbar">
+            <a href="https://github.com/floerianc/" target="_blank">My Github</a>
+            <img src="assets/icon/github-mark-white.svg" alt="Github Mark White" class="logo-toolbar">
+        </div>
+
+        <div class="item-toolbar">
+            <a href="https://discord.com/users/1088952298962681946" target="_blank">My Discord</a>
+            <img src="assets/icon/discord-mark-white.svg" alt="Discord Mark White" class="logo-toolbar">
+        </div>
+
+        <div class="item-toolbar">
+            <a href="https://steamcommunity.com/id/GDFlorian/" target="_blank">My Steam</a>
+            <img src="assets/icon/steam-mark-white.svg" alt="Steam Mark White" class="logo-toolbar" style="width: 40px; height: 40px">
+        </div>
+
+        <div class="item-toolbar">
+            <a href="https://flo.ohhellnaw.de/#start" target="_blank">My Website</a>
+            <img src="assets/icon/website-mark-white.svg" alt="Website Mark White" class="logo-toolbar">
+        </div>
+    </div>
+
+    <div class="page-content">
+        <section id="welcome">
+            <header>PyPhyEngine &ndash; Welcome</header>
+            <p>Welcome to this documentation! &mdash; In this documentation you will learn how to use PyPhyEngine, what my workflow looks like and what my goals for the engine are.</p>
+            <p>First, we will talk about how the project started and what it was originally meant to be. Then, we will go over to how it's going today. That will answer questions like: <li>What are you currently working on?</li><li>What are your projects for the future?</li></p>
+            <p>Then, we walk over to the "getting started" section. This is where the coding begins. You'll find code snippets and other helpful resources here along with the API Reference section.</p>
+            <p>You will find out how you can create PhysicsObjects, enable collision between them, record videos in the program and more.</p>
+        </section>
+
+        <section id="start">
+            <header>PyPhyEngine &ndash; How it started</header>
+            <p>Please finish this...</p>
+        </section>
+
+        <section id="going">
+            <header>PyPhyEngine &ndash; How it's going</header>
+            <p>Currently I am working on an editor to assist you with creating PhysicsRooms, PhysicsObjects and StaticObjects all within a graphical editor.</p>
+            <p>The editor would give you a script that you can then insert into any editor and if you run the script it'll work. It was originally meant to assist the user in creating StaticObjects without needing to write down each individual vector, but I then decided on just creating an entire editor for everything.</p>
+            <p>In the future I'd like to create a 3D physics engine within the limits of MPL.</p>
+        </section>
+
+        <section id="POnSO">
+            <header>PyPhyEngine &ndash; Getting Started</header>
+            <p>A normal program utilizing PyPhyEngine usually consists of the following things:</p>
+            <li>PhysicsObjects and/or StaticObjects</li>
+            <li>An ObjectCollection</li>
+            <li>A PhysicsRoom</li>
+            <p>And optionally:</p>
+            <li>A videoRecorder</li>
+            <li>A Collider</li>
+            <p>A PhysicsObject (PO) is an object, which moves and is affected by things like gravity or collision with other objects.</p>
+            <p>
+                A PO consists of an x-position and y-position, which is just the position on the axis where the PO lays on. A PO also has a size which declares, well, the size of the PO. The parameter "grav" indicates gravity and stands for how much gravity is being applied to the PO.
+                The fps or frames per second is the amount of frames that are rendered each second for that object. Bounce stands for how much of the kinetic energy, which the PO has when it hits the ground, will be reversed so the ball bounces on the floor. Bounce is an integer or float between 0 and 1.
+                Friction manipulates the speed of the PO when it's on the floor. Friction is an integer or float between 0 and 1, which declares how much of the velocity on the x-axis will be lost. The general formula for the calculation which will be executed each frame, where the PO is on the floor, is <blockquote>x_velocity = x_velocity / (friction + 1)</blockquote></p>
+            
+            <p>
+                <code>velocity_x</code> and <code>velocity_y</code> indicate how much the PO will move on either the x- or y-axis. Both variables can be integers or floats.
+                <code>border_x</code> and <code>border_y</code> are a list of integers which declare the barriers where the PO will be.
+            </p>
+            <p>
+                For example, if <code>border_x = [5, 25]</code> the PO will only move between these two values. Any position outside of that range will be interpreted as a wall.
+                The same applies to <code>border_y</code>. If <code>border_y = [0, 50]</code> any position on the axis when y <= 0 will act as the floor and any position on the axis when y >= 50 will act as the ceiling of a room.
+            </p>
+            <p>
+                The <code>color</code> string will define the color of the PO, very simple. The color palette is based on the named colors of MPL.
+                <code>show_trajectory</code> is a boolean which decides whether or not the trajectory of the PO will be shown.
+                Finally, last but not least, <code>max_trajectory_iterations</code> declares how many points of the trajectory will be saved before it starts deleting the oldest point. Essentially, the higher the number, the longer the trajectory. 
+            </p>
+
+            <p>If you want to create a PhysicsObject, you could do this:</p>
+            <pre><code class="language-python">
+ball = PhysicsObject(
+    x = 5,
+    y = 35,
+    size = 100,
+    grav = 1,
+    fps = 30,
+    bounce = 0.8,
+    friction = 0.2,
+    velocity_x = 1,
+    velocity_y = 0.5,
+    border_x = [0, 20],
+    border_y = [0, 50],
+    color = "Blue",
+    show_trajectory = True,
+    max_trajectory_iterations = 50
+)
+                </code>
+            </pre>
+            <p>This initiates a PhysicsObject object which later can be used to be implemented into the simulation</p>
+            <p>
+                Next are StaticObjects (SO), which won't move at all. Not the gravity or the collision with other objects moves the SO.
+                StaticObjects consist of a list of vectors, called <code>matrix</code>, <code>color</code> and <code>fill_color</code>. 
+                <code>matrix</code> is a list of vectors which define the points and lines of the StaticObject. The first list consists of x-positions and the second list of y-positions. 
+                The <code>color</code> defines the color, which is based on the named colors of MPL, of the lines and points of the StaticObject.
+                Lastly, the <code>fill_color</code> is the color, which will be used as the filling.
+            </p>
+            <p>To initiate a StaticObject you can do one of the following</p>
+            <pre>
+                <code class="language-python">
+# this method uses a list of vectors
+
+box1 = StaticObject(
+    [
+        [0, 5, 5, 5, 5, 0, 0, 0], # list of x-positions
+        [20, 20, 20, 25, 25, 25, 20, 20] # list of y-positions
+    ],
+    "black",
+    "black"
+)
+                </code>
+            </pre>
+            <pre>
+                <code class="language-python">
+# this method uses a function to generate a list of vectors for you
+
+rectangle = StaticObject(
+    utils.generate_rectangle(2, 8, 6, 12), # x1, y1, x2, y2 (corner points)
+    "red",
+    "red"
+)
+                </code>
+            </pre>
+        </section>
+
+        <section id="PhysicsRoom">
+            <header>PyPhyEngine &ndash; PhysicsRoom</header>
+            <p>
+                A PhysicsRoom consists of an ObjectCollection and a few other settings which we'll get to later.
+                First we have to define a ObjectCollection which can built using a list of PhysicsObjects and/or StaticObjects.
+                The ObjectCollection is a class which is used to store all the PhysicsObjects and StaticObjects in one place as a dictionary.
+                This makes it easier to work with every type of object when rendering the PhysicsRoom.
+                This ObjectCollection will then be passed to the PhysicsRoom.
+            </p>
+            <pre>
+                <code class="language-python">
+# here we declare the list of POs, build a ObjectCollection and then render the PhysicsRoom
+
+objects = [ball1, ball2, ball3]
+collection = ObjectCollection().build_collection(objects)
+
+PhysicsRoom(
+    OC = collection,
+).render()
+                </code>
+            </pre>
+        </section>
+
+        <section id="collisions">
+            <header>PyPhyEngine &ndash; Collisions, Recording and more</header>
+            <p>
+                When initializing a PhysicsRoom you can pass multiple settings like collision, recording as more.
+                The <code>collision</code> parameter is a boolean which decides whether or not the objects in the room will collide with each other.
+                The <code>KEGraphing</code> parameter is also a boolean which decides whether or not there should be another subplot which displays the kinetic energy of each PhysicsObject.
+                The <code>recording</code> parameter is a boolean too which decides whether or not the simulation should be recorded and saved in the current directory as a .avi file.
+            </p>
+            <p>
+                Here is an example of how you can use these parameters:
+            </p>
+            <pre>
+                <code class="language-python">
+# this script enables collision, recording and KEGraphing
+
+objects = [ball1, ball2, ball3]
+collection = ObjectCollection().build_collection(objects)
+
+PhysicsRoom(
+    OC = collection,
+    collision = True,
+    KEGraphing = True,
+    recording = True
+).render()
+                </code>
+            </pre>
+            <p>
+                Heres a video of a simulation created with PyPhyEngine:
+            </p>
+            <div class="video-container">
+                <video width="auto" height="auto" class="video" autoplay loop>
+                    <source src="assets/content/video_name.mp4" type="video/mp4">
+                </video>
+            </div>
+            <p>
+                Here's the code for the video above:
+            </p>
+            <pre>
+                <code class="language-python">
+import pyPhyEngine as phy
+import pyPhyEngine.models as models
+
+ball = models.PhysicsObject(
+    x = 1,
+    y = 20,
+    size = 65,
+    grav = 0.25,
+    fps = 90,
+    mass=1,
+    bounce = 1,
+    friction = 0.05,
+    velocity_x = 0.15,
+    color = "blue",
+    show_trajectory = True
+)
+
+ball2 = models.PhysicsObject(
+    x = 9,
+    y = 20,
+    size = 200,
+    grav = 0.25,
+    fps = 90,
+    bounce = 1,
+    mass=1,
+    friction = 0.05,
+    velocity_x = -0.15,
+    color = "purple",
+    show_trajectory = True
+)
+
+collection = phy.ObjectCollection().build_collection([ball, ball2])
+
+phy.PhysicsRoom(
+    OC=collection,
+    record_video=True,
+    collision=True
+).render()
+
+                </code>
+            </pre>
+        </section>
+        <section id="init">
+            <header>PyPhyEngine &ndash; <code>pyPhyEngine</code></header>
+
+            <p>
+                The <code>pyPhyEngine</code> module is the main module of the engine. It contains the <code>PhysicsRoom</code> class and <code>ObjectCollection</code> class.
+                The <code>PhysicsRoom</code> class is used to render the simulation, using the ObjectCollection.
+                The <code>ObjectCollection</code> class is used to store all the PhysicsObjects and StaticObjects in one place as a dictionary.
+            </p>
+
+            <miniheader>Usage</miniheader>
+
+            <!-- _____ PHYSICSROOM _____ -->
+            
+            <miniheader>PhysicsRoom</miniheader>
+
+            <blockquote>
+                room = PhysicsRoom(OC: dict, collision: bool = True, KEGraphing: bool = False, tolerance: int | float = 0.25, loop: bool = False, record_video: bool = False, debug: bool = False)
+            </blockquote>
+            <explain>
+                > Initializes the PhysicsRoom.<br>
+                > The OC parameter is the ObjectCollection which contains all the PhysicsObjects and StaticObjects.<br>
+                > The collision parameter decides whether or not the objects in the room will collide with each other.<br>
+                > The KEGraphing parameter decides whether or not there should be another subplot which displays the kinetic energy of each PhysicsObject.<br>
+                > The tolerance parameter is used to calculate the distance between two objects.<br>
+                > The loop parameter decides whether or not the generation should be looped.<br>
+                > The record_video parameter decides whether or not the simulation should be recorded and saved in the current directory as a .avi file.<br>
+                > The debug parameter decides whether or not the debug mode should be enabled.
+            </explain>
+
+            <!-- _____ OBJECTCOLLECTION _____ -->
+            
+            <miniheader>ObjectCollection</miniheader>
+
+            <blockquote>
+                collection = ObjectCollection().build_collection(*objects: PhysicsObject | StaticObject)
+            </blockquote>
+            
+            # TODO: Explain each function of the ObjectCollection class
+
+            <miniheader>KEGraphing</miniheader>
+
+            <blockquote>
+                keGraphing = KEGraphing(objects: list[PhysicsObject])
+            </blockquote>
+            <explain>
+                > Initializes the KEGraphing class.<br>
+                > The objects parameter is a list of PhysicsObjects.<br>
+                > The KEGraphing class will then calculate the kinetic energy of each PhysicsObject and display it in a subplot as a bar graph.
+            </explain>
+
+            <p>get_kinetic_energy</p>
+            
+            <blockquote>
+                keGraphing.get_kinetic_energy() -> list
+            </blockquote>
+            <explain>
+                > Calculates the kinetic energy of each PhysicsObject.<br>
+                > Returns a list containing the kinetic energy of each PhysicsObject.
+            </explain>
+
+            <p>get_limit</p>
+
+            <blockquote>
+                keGraphing.get_limit() -> int
+            </blockquote>
+            <explain>
+                > Calculates the limit of the y-axis based of the bar graph based on the potential energy of each PhysicsObject.<br>
+                > Returns the limit.
+            </explain>
+
+            <p>get_axes</p>
+
+            <blockquote>
+                keGraphing.get_axes() -> dict
+            </blockquote>
+            <explain>
+                > Returns the value for the x- and y-axis of the KE graph.
+            </explain>
+        </section>
+        <section id="collider">
+
+            <!-- _____ COLLIDER _____ -->
+            
+            <header>PyPhyEngine &ndash; <code>pyPhyEngine.collider</code></header>
+            <p>
+                The <code>pyPhyEngine.collider</code> module contains the <code>Collider</code> class, which detects collisions between objects.
+            </p>
+
+            <miniheader>Usage</miniheader>
+
+            <blockquote>
+                collision = pyPhyEngine.collider(tolerance: int | float = 0.25)
+            </blockquote>
+
+            <p>get_objects</p>
+
+            <blockquote>
+                collision.get_objects(collection: dict) -> None
+            </blockquote>
+            <explain>
+                > Adds the objects of the collection to self.objects of Collider.
+            </explain>
+                <p>extract_current_object</p>
+
+            <blockquote>
+                collision.extract_current_object(iteration: int) -> PhysicsObject
+            </blockquote>
+            <explain>
+                > Usually used by pyPhyEngine.renderer to extract each PhysicsObject.
+                > Returns the current PhysicsObject.
+            </explain>
+                <p>check_collides_physicsObject</p>
+
+            <blockquote>
+                collision.check_collides_physicsObject(object1: PhysicsObject, physicsObject: PhysicsObject) -> tuple[bool] | PhysicsObject
+            </blockquote>
+            <explain>
+                > Checks if the current PhysicsObject collides with any other PhysicsObject.<br>
+                > Returns a tuple with a boolean and the two colliding PhysicsObjects.
+            </explain>
+
+            <p>lines_staticObject</p>
+
+            <blockquote>
+                collision.lines_staticObject(staticObject: StaticObject) -> list
+            </blockquote>
+            <explain>
+                > Returns a list containing each line (pair of points).
+            </explain>
+
+            <p>check_collides_staticObject</p>
+
+            <blockquote>
+                collision.check_collides_staticObject(object1: PhysicsObject, staticObject: StaticObject) -> bool
+            </blockquote>
+            <explain>
+                > Checks if the current PhysicsObject collides with any StaticObject.<br>
+                > Returns a boolean depending on whether or not there are any collisions.
+            </explain>
+
+            <p>check_collides</p>
+
+            <blockquote>
+                collision.check_collides(object1: PhysicsObject) -> bool
+            </blockquote>
+            <explain>
+                > Checks if the current PhysicsObject collides with any other object.<br>
+                > It checks this by iterating over each PhysicsObject and StaticObject and then<br>
+                > calling check_collides_physicsObject and check_collides_staticObject accordingly.<br>
+                > Returns a boolean depending on whether or not there are any collisions.
+            </explain>
+
+            <p>calculate_velocities</p>
+
+            <blockquote>
+                collision.calculate_velocities(object1: PhysicsObject | StaticObject, object2: PhysicsObject | StaticObject) ->  dict[str, dict[str, int | float]]
+            </blockquote>
+            <explain>
+                > Calculates the new velocities of the two colliding objects.<br>
+                > Returns a dictionary containing the new velocities of the two objects.
+            </explain>
+
+            <p>collide</p>
+
+            <blockquote>
+                collision.collide(object1: PhysicsObject, object2: PhysicsObject | None) -> None
+            </blockquote>
+            <explain>
+                > This gets called to apply the new velocities on both objects.<br>
+                > You would pass None as the second object if the second object is a StaticObject.<br>
+                > Thats because StaticObjects don't move.<br>
+                > Returns None.
+            </explain>
+        </section>
+        <section id="generator">
+            <header>PyPhyEngine &ndash; <code>pyPhyEngine.generator</code></header>
+
+            <p>
+                The <code>pyPhyEngine.generator</code> module contains the <code>PhysicsRoomGenerator</code> class, which generates a completely random PhysicsRoom.
+                Note that the PhysicsRoomGenerator is not a PhysicsRoom, but a class which generates a PhysicsRoom. Also, recording and KEGraphing will be disabled by default. 
+            </p>
+
+            <miniheader>Usage</miniheader>
+
+            <!-- _____ PHYSICSROOMGENERATOR _____ -->
+
+            <blockquote>
+                generator = pyPhyEngine.generator.PhysicsRoomGenerator(loop: bool = False, collision: bool = True)
+            </blockquote>
+            <explain>
+                > Initializes the PhysicsRoomGenerator.<br>
+                > The loop parameter decides whether or not the generation should be looped.<br>
+                > The collision parameter decides whether or not the objects in the room will collide with each other.
+            </explain>
+
+            <p>create_objects</p>
+
+            <blockquote>
+                generator.create_objects() -> None
+            </blockquote>
+            <explain>
+                > Creates a random amount of PhysicsObjects. Maximum is 10.<br>
+                > The objects get appended to the self.PhysicsObjects list.<br>
+                > Each PhysicsObject gets a random position, size, color, velocity and more.
+            </explain>
+
+            <p>ObjectCollection</p>
+
+            <blockquote>
+                generator.ObjectCollection() -> None
+            </blockquote>
+
+            <explain>
+                > Creates a ObjectCollection with the PhysicsObjects.<br>
+                > The ObjectCollection dict will be saved in a variable within the class.
+            </explain>
+
+            <p>create_room</p>
+
+            <blockquote>
+                generator.create_room() -> None
+            </blockquote>
+            <explain>
+                > Renders the PhysicsRoom with the generated ObjectCollection.<br>
+                > The PhysicsRoom will be rendered immediately.
+            </explain>
+        </section>
+        <section id="models">
+            <header>PyPhyEngine &ndash; <code>pyPhyEngine.models</code></header>
+
+            <p>
+                The <code>pyPhyEngine.models</code> module contains the <code>PhysicsObject</code> and <code>StaticObject</code> classes.
+            </p>
+
+            <miniheader>Usage</miniheader>
+
+            <!-- _____ PHYSICSOBJECT _____ -->
+
+            <miniheader>PhysicsObject</miniheader>
+
+            <blockquote>
+                object = pyPhyEngine.models.PhysicsObject(x: int | float, y: int | float, size: int, grav: int | float, fps: int, bounce: int | float, friction: int | float, velocity_x: int | float, velocity_y: int | float, border_x: list[int], border_y: list[int], color: str, show_trajectory: bool, max_trajectory_iterations: int)
+            </blockquote>
+
+            <explain>
+                > Initializes a PhysicsObject.<br>
+                > The x and y parameters are the position of the PhysicsObject.<br>
+                > The size parameter is the size of the PhysicsObject.<br>
+                > The grav parameter is the gravity which is applied to the PhysicsObject.<br>
+                > The fps parameter is the frames per second of the PhysicsObject.<br>
+                > The bounce parameter is the bounce of the PhysicsObject.<br>
+                > The friction parameter is the friction of the PhysicsObject.<br>
+                > The velocity_x and velocity_y parameters are the velocities of the PhysicsObject.<br>
+                > The border_x and border_y parameters are the borders of the PhysicsObject.<br>
+                > The color parameter is the color of the PhysicsObject.<br>
+                > The show_trajectory parameter decides whether or not the trajectory of the PhysicsObject should be shown.<br>
+                > The max_trajectory_iterations parameter is the maximum amount of trajectory points.
+            </explain>
+
+            <p>tick</p>
+
+            <blockquote>
+                PhysicsObject.tick() -> int | dict
+            </blockquote>
+
+            <explain>
+                > Updates the PhysicsObject.<br>
+                > This will usually run each frame of the simulation.<br>
+                > It validates the new x-, y-position and trajectory points<br>
+                > Returns the new position of the PhysicsObject.
+            </explain>
+
+            <p>validate_x_position</p>
+
+            <blockquote>
+                PhysicsObject.validate_x_position(x: int) -> int
+            </blockquote>
+            <explain>
+                > Validates the x-position of the PhysicsObject.<br>
+                > Returns the new x-position.
+            </explain>
+
+            <p>validate_y_position</p>
+
+            <blockquote>
+                PhysicsObject.validate_y_position(y: int) -> int
+            </blockquote>
+            <explain>
+                > Validates the y-position of the PhysicsObject.<br>
+                > Returns the new y-position.
+            </explain>
+
+            <p>validate_trajectory</p>
+
+            <blockquote>
+                PhysicsObject.validate_trajectory() -> None
+            </blockquote>
+            <explain>
+                > Validates the trajectory of the PhysicsObject.<br>
+                > If the trajectory is too long, it will delete the oldest point.<br>
+                > The trajectory will be appended to the self.trajectory variable of the class.
+            </explain>
+
+            <p>get_data_string</p>
+
+            <blockquote>
+                PhysicsObject.get_data_string() -> str
+            </blockquote>
+            <explain>
+                > Returns a string with a lot of data of the PhysicsObject.<br>
+                > This is usually used for debugging purposes.
+            </explain>
+
+            <!-- _____ STATICOBJECT _____ -->
+            
+            <miniheader>StaticObject</miniheader>
+
+            <blockquote>
+                object = pyPhyEngine.models.StaticObject(matrix: list[list[int]], color: str = "blue", fill_color: str = "blue")
+            </blockquote>
+            <explain>
+                > Initializes a StaticObject.<br>
+                > The matrix parameter is a list of vectors which define the points and lines of the StaticObject.<br>
+                > The color parameter is the color of the StaticObject.<br>
+                > The fill_color parameter is the color of the filling of the StaticObject.
+            </explain>
+        </section>
+        <section id="renderer">
+            <header>PyPhyEngine &ndash; <code>pyPhyEngine.renderer</code></header>
+
+            <p>
+                The <code>pyPhyEngine.renderer</code> module contains the <code>Renderer</code> class, which renders the simulation.
+            </p>
+
+            <miniheader>Usage</miniheader>
+
+            <!-- _____ RENDERER _____ -->
+
+            <blockquote>
+                renderer = pyPhyEngine.renderer.Renderer(fps: int = 60, loop: bool = False, collision: bool = True, recorder: bool = False, KEGraphing: bool = False, collection: dict = None)
+            </blockquote>
+            <explain>
+                > Initializes the Renderer.<br>
+                > The fps parameter is the frames per second of the simulation.<br>
+                > The loop parameter decides whether or not the simulation should be looped.<br>
+                > The collision parameter decides whether or not the objects in the room will collide with each other.<br>
+                > The recorder parameter decides whether or not the simulation should be recorded and saved in the current directory as a .avi file.<br>
+                > The KEGraphing parameter decides whether or not there should be another subplot which displays the kinetic energy of each PhysicsObject.<br>
+                > The collection parameter is the ObjectCollection which contains all the PhysicsObjects and StaticObjects.
+            </explain>
+
+            <p>setup</p>
+
+            <blockquote>
+                renderer.setup() -> Figure | Axes
+            </blockquote>
+            <explain>
+                > Sets up the figure and axes of the simulation.<br>
+                > If recorder is True, it will set up the recorder.<br>
+                > If KEGraphing is True, it will inititalize 2 subplots instead of 1 and the KEGraphing class<br>
+                > If collider is True, it will initialize the Collider class.<br>
+                > Returns the figure and axes.
+            </explain>
+
+            <p>save_frame</p>
+
+            <blockquote>
+                renderer.save_frame() -> None
+            </blockquote>
+            <explain>
+                > Saves the current frame of the simulation.<br>
+                > This is only used when recording the simulation.
+            </explain>
+
+            <p>render_object</p>
+
+            <blockquote>
+                renderer.render_object(object: PhysicsObject | StaticObject, axis: Axes) -> None
+            </blockquote>
+            <explain>
+                > Renders the PhysicsObject or StaticObject on the axis.<br>
+                > Returns None.
+            </explain>
+
+            <p>render_all_objects</p>
+
+            <blockquote>
+                renderer.render_all_objects(collection: dict, axis: Axes) -> None
+            </blockquote>
+            <explain>
+                > Iterates through each object type in the ObjectCollection.<br>
+                > Returns None.
+            </explain>
+
+            <p>set_axis_template</p>
+
+            <blockquote>
+                renderer.set_axis_template(axis: Axes, room_limits: dict) -> None
+            </blockquote>
+            <explain>
+                > Sets the limits of the axis.<br>
+                > Returns None.
+            </explain>
+
+            <p>draw_kinetic_energy</p>
+
+            <blockquote>
+                renderer.draw_kinetic_energy(axis: Axes) -> None
+            </blockquote>
+            <explain>
+                > Draws the kinetic energy of each PhysicsObject on the axis of the second subplot.<br>
+                > Returns None.
+            </explain>
+
+            <p>initialize_render</p>
+
+            <blockquote>
+                renderer.initialize_render(room_limits: dict) -> None
+            </blockquote>
+            <explain>
+                > Initializes the rendering of the simulation.<br>
+                > First it sets the limits of the axis, then renders all objects and finally draws the kinetic energy graph.<br>
+                > Then, it also checks for collisions and updates the positions of the PhysicsObjects if any collide.<br>
+                > Returns None.
+            </explain>
+
+            <p>finish_video</p>
+
+            <blockquote>
+                renderer.finish_video() -> None
+            </blockquote>
+            <explain>
+                > Finishes the video rendering.<br>
+                > Returns None.
+            </explain>
+        </section>
+        <section id="utils">
+            <header>PyPhyEngine &ndash; <code>pyPhyEngine.utils</code></header>
+
+            <p>
+                The <code>pyPhyEngine.utils</code> module contains the <code>generate_rectangle</code>, <code>generate_circle</code> and <code>extract_physicsObjects</code> functions.
+            </p>
+
+            <miniheader>Usage</miniheader>
+
+            <!-- _____ GENERATE_RECTANGLE _____ -->
+
+            <p>generate_rectangle</p>
+
+            <blockquote>
+                rectangle = pyPhyEngine.utils.generate_rectangle(x1: int, y1: int, x2: int, y2: int) -> list[list[int]]
+            </blockquote>
+            <explain>
+                > Generates a rectangle based on the corner points.<br>
+                > Returns a list of vectors which define the points and lines of the rectangle.
+            </explain>
+
+            <!-- _____ GENERATE_CIRCLE _____ -->
+
+            <p>generate_circle</p>
+
+            <blockquote>
+                circle = pyPhyEngine.utils.generate_circle(x: int, y: int, radius: int, max_lines: int) -> list[list[int]]
+            </blockquote>
+            <explain>
+                > Generates a circle based on the center point and radius.<br>
+                > The max_lines parameter is the amount of lines which will be generated.<br>
+                > Returns a list of vectors which define the points and lines of the circle.
+            </explain>
+
+            <!-- _____ EXTRACT_PHYSICSOBJECTS _____ -->
+
+            <p>extract_physicsObjects</p>
+
+            <blockquote>
+                objects = pyPhyEngine.utils.extract_physicsObjects(collection: dict) -> list[PhysicsObject]
+            </blockquote>
+
+            <explain>
+                > Extracts all PhysicsObjects from the ObjectCollection.<br>
+                > Returns a list of PhysicsObjects.
+            </explain>
+        </section>
+        <section id="vectors">
+            <header>PyPhyEngine &ndash; <code>pyPhyEngine.vectors</code></header>
+
+            <p>
+                The <code>pyPhyEngine.vectors</code> module contains functions which are used to calculate vectors.<br>
+                Typically they are used in the project whenever we need to find if two objects collide or not.
+                We use them especially when PhysicsObjects and StaticObjects meet as we have to calculate whether or not the PhysicsObject is on a line of the StaticObject or not.
+                As of today (20.12.2024) the entire system is very unstable and not very reliable. I am working on a new system which will be more reliable and actually calculate the velocities for colliding objects correctly.<br>
+                Therefore, the collisions system is not very reliable with StaticObjects.
+            </p>
+
+            <miniheader>Usage</miniheader>
+
+            <p>get_vector_difference</p>
+
+            <blockquote>
+                vector = pyPhyEngine.vectors.get_vector_difference(vector1: list[int], vector2: list[int]) -> list[int]
+            </blockquote>
+            <explain>
+                > Calculates the difference between two vectors.<br>
+                > Returns the difference as a vector.
+            </explain>
+
+            <p>extract_points</p>
+
+            <blockquote>
+                points = pyPhyEngine.vectors.extract_points(line: list[list[int]]) -> list[list[int]]
+            </blockquote>
+            <explain>
+                > Extracts the connected points of a line.<br>
+                > Returns a list of points.
+            </explain>
+
+            <p>neutralize_points</p>
+
+            <blockquote>
+                points = pyPhyEngine.vectors.neutralize_points(*points: list[list[int]]) -> list[list[int]]
+            </blockquote>
+            <explain>
+                > Neutralizes the points of a line.<br>
+                > Returns a list of points with their absolute values.
+            </explain>
+
+            <p>point_collides_line</p>
+
+            <blockquote>
+                collision = pyPhyEngine.vectors.point_collides_line(point: list[int], line: list[list[int]]) -> bool
+            </blockquote>
+            <explain>
+                > Checks if a point collides with a line.<br>
+                > Returns a boolean depending on whether or not there is a collision.
+            </explain>
+        </section>
+        <section id="video">
+            <header>PyPhyEngine &ndash; <code>pyPhyEngine.video</code></header>
+
+            <p>
+                The <code>pyPhyEngine.video</code> module contains the <code>VideoRecorder</code> class, which records the simulation as a video.
+            </p>
+
+            <miniheader>Usage</miniheader>
+
+            <!-- _____ VIDEORECORDER _____ -->
+
+            <blockquote>
+                recorder = pyPhyEngine.video.VideoRecorder(fps: int = 60, video_path: str = '.\\', delete_temp: bool = False)
+            </blockquote>
+            <explain>
+                > Initializes the VideoRecorder.<br>
+                > The fps parameter is the frames per second of the video.<br>
+                > The video_path parameter is the path where the video will be saved.<br>
+                > The delete_temp parameter decides whether or not the temporary frames should be deleted.
+            </explain>
+
+            <p>delete_tmp</p>
+
+            <blockquote>
+                recorder.delete_tmp() -> None
+            </blockquote>
+            <explain>
+                > Deletes the temporary frames.<br>
+                > Returns None.
+            </explain>
+
+            <p>save_frame</p>
+
+            <blockquote>
+                recorder.save_frame(plot: Figure) -> None
+            </blockquote>
+            <explain>
+                > Saves the current frame of the simulation.<br>
+                > Returns None.
+            </explain>
+
+            <p>render_video</p>
+
+            <blockquote>
+                recorder.render_video() -> None
+            </blockquote>
+            <explain>
+                > Renders the video and saves it in the video_path.<br>
+                > Returns None.
+            </explain>
+        </section>
+    </div>
+
+    <div class="footer">
+        <a href="/imprint">Imprint</a>
+        <p>&copy; Florian 2024 &mdash; PyPhyEngine</p>
+        <a href="#">Back to top</a>
+    </div>
+</body>
+</html>
