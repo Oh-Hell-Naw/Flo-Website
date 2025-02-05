@@ -1,37 +1,117 @@
-<html>
-	<head>
-		<link rel="stylesheet" href="index.css" />
-		<title>Flörian</title>
-		<link rel="icon" href="logo/star.png" />
-	</head>
-	<body>
-		<img src="logo/star.png" class="logo" />
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style/style.css">
+        <title>Document</title>
+    </head>
+    <body>
+        <sidebar>
+            <section>
+                <header>Website</header>
+                <div class="buttons">
+                    <div class="sidebar-button">
+                        <a href="#">Home</a>
+                        <img src="assets/house.png">
+                    </div>
+                    <div class="sidebar-button">
+                        <a href="#projects">Projects</a>
+                        <img src="assets/tools.png">
+                    </div>
+                    <div class="sidebar-button">
+                        <a href="#about">About</a>
+                        <img src="assets/about.png">
+                    </div>
+                    <div class="sidebar-button">
+                        <a href="#contact">Contact</a>
+                        <img src="assets/contact.png">
+                    </div>
+                </div>
+            </section>
+        </sidebar>
 
-		<div class="shapes">
-			<p>fProjects</p>
-		</div>
-		<a href="#start"><img src="arrow.svg" class="arrow" /></a>
+        <main>
+            <section id="home">
+                <intro>Hello, I am Flörian.</intro>
+            </section>
 
-		<div class="main-content" id="start">
-			<div class="text-start"></div>
-		</div>
-		<br />
-		<hr class="seperator" />
-		<h1 class="centered-header">Socials</h1>
-		<div class="socials"></div>
-		<div class="overview">
-			<h3 class="overview-header" >Full Overview</h3><br />
-			<a href="./overview" target="_blank" class="overview-button">Go to Overview</a>
-		</div>
+            <section id="projects">
+                <header>Projects</header>
+                <p>
+                    Here you can find my most recently published projects which are available on Github.
+                    The ones I am the most proud of are the Dijkstra Demo and the Physics Engine in Python.
+                </p>
+                
+                <div class="page-container">
+                    <a class="project">
+                        <header>Project Name</header>
+                        <p>Project Description</p>
+                        <span>Author Name</span>
+                        <span>Stars Count</span>
+                    </a>
+                </div>
+                <script src="GithubAgent.js"></script>
+            </section>
 
-		<div class="transition">
-			<div>
-				<div class="box">
-					<div></div>
-				</div>
-			</div>
-		</div>
-		<a class="footer" href="./imprint" target="_blank">Imprint</a>
-		<script src="./index.js" defer></script>
-	</body>
+            <section id="about">
+                <header>About</header>
+                <p>
+                    I am Florian, a student from Germany with great interest in computer science and software development.
+                    Currently, I am developing purely in Python. However, I am planning to learn more languages (Like TypeScript) in the future.
+
+                </p>
+                <p>
+                    One of my biggest projects is at the same time a school project which is the Dijkstra Demo program.
+                    It is a program to visualize the Dijkstra algorithm in action. The program is written in Python and uses the PyQt5 framework.
+                </p>
+                <a class="preview-container" href="https://github.com/Floerianc/Dijkstra-Editor" target="_blank">
+                    <img class="project-preview" src="assets/previews/04.png">
+                    <img class="project-preview" src="assets/previews/06.png">
+                </a>
+                <p>
+                    Next is my physics engine which is also written in Python. It is a simple physics engine which can simulate gravity and collisions aswell as other forces.
+                    It is based on the matplotlib library which is used to visualize the simulation.
+                </p>
+                <a class="preview-container" href="https://github.com/Floerianc/pyPhyEngine" target="_blank">
+                    <video width=450 height=400 class="project-preview-video" autoplay loop>
+                        <source src="assets/previews/video_name.mp4" type="video/mp4">
+                    </video>
+                </a>
+
+                <h2>What am I working on?</h2>
+
+                <p>
+                    As of right now I am working on training an AI for Geometry Dash levels.
+                    Currently I am in early development trying to prepare everything for the model training.
+                    So far I have successfully decrypted and extracted necessary data from the game files to decrypt any level.
+                </p>
+            </section>
+
+            <section>
+                <header id="contact">Contact</header>
+                <p>
+                    If you have any questions or want to contact me, feel free to send me a message on any of the following platforms
+                    I will try to respond as soon as possible.
+                </p>
+                <div class="contact-container">
+                    <a href="https://discord.com/users/1088952298962681946" class="contact-button" target="_blank">
+                        <img src="assets/icons/discord-mark-white.svg">
+                        <span>Discord</span>
+                    </a>
+                    <a href="https://github.com/floerianc/" class="contact-button" target="_blank">
+                        <img src="assets/icons/github-mark-white.svg">
+                        <span>Github</span>
+                    </a>
+                    <a href="https://steamcommunity.com/id/GDFlorian/" class="contact-button" target="_blank">
+                        <img src="assets/icons/steam-mark-white.svg">
+                        <span>Steam</span>
+                    </a>
+            </section>
+
+            <footer>
+                <p>&copy; 2025 Florian</p>
+            </footer>
+        </main>
+    </body>
 </html>
