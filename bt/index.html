@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../style/style_bt.css">
+        <link rel="icon" href="../assets/star.png">
+        <script src="https://cdn.plot.ly/plotly-3.0.0.min.js"></script>
+        <title>BT - Prognosen</title>
+    </head>
+    <body>
+        <div class="header-container">
+            <span class="graph-title"></span>
+            <hr class="title-animated-line">
+        </div>
+        <div class="graph-container">
+            <span class="hint">Erstellt mit Hilfe von: <a href="https://api.dawum.de">api.dawum.de</a></span>
+            <div class="pie" id="pie"></div>
+        
+        <section class="infotext">
+            <h2>Infotext</h2>
+            <p>In diesem Kuchendiagramm können Sie die neusten Wahlprognosen einer bevorstehenden Wahl sehen. Dazu gehören z.B. der Bundestag, die Hamburger Bürgerschaft und weitere politische Wahlen in den unterschiedlichen Bundesländern. Um alle öffentlichen Projekte dieses Entwicklers anzusehen, klicken Sie <a href="https://github.com/Floerianc" target="_blank">hier.</a></p>
+        </section>
+
+            <div class="graph-info-container">
+                <span id="survey-date"></span>
+                <span id="survey-people"></span>
+                <span id="survey-institute"></span>
+                <span id="survey-tasker"></span>
+                <span id="survey-method"></span>
+            </div>
+        </div>
+
+        <div class="parliament-header">
+            <span>MÖGLICHE REGIERUNG</span>
+        </div>
+
+        <section class="infotext">
+            <h2>Infotext</h2>
+            <p>In dem folgenden Abschnitt sehen Sie mögliche Koalitionen, welche durch ein Skript in der Webseite berechnet werden. Beachten Sie, dass es hierbei zu fehlen kommen kann und der Algorithmus dahinter noch nicht vollständig ist!</p>
+        </section>
+
+        <div class="parliament-container"></div>
+        <script src="./dist/MainAgent.js" type="module"></script>
+        <script src="./dist/CoalitionFinder.js" type="module"></script>
+        <script src="./dist/PieGenerator.js" type="module"></script>
+
+        <footer class="footer-template">
+            <a class="social-media">
+                <img src="../assets/icons/discord-mark-white.svg" class="social-media-logo"></img>
+                <span>Discord</span>
+            </a>
+            <a class="social-media">
+                <img src="../assets/icons/github-mark-white.svg" class="social-media-logo"></img>
+                <span>Github</span>
+            </a>
+            <a class="social-media">
+                <img src="../assets/icons/steam-mark-white.svg" class="social-media-logo"></img>
+                <span>Steam</span>
+            </a>
+        </footer>
+    </body>
+</html>

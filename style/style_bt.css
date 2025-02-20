@@ -1,0 +1,291 @@
+@import url("base.css");
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&display=swap');
+
+.lexend-exa-semibold {
+    font-family: "Lexend Exa", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.chakra-petch-medium {
+    font-family: "Chakra Petch", serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+::-webkit-scrollbar {
+    width: 0.75vw;
+}
+
+::-webkit-scrollbar-thumb {
+    transition: 0.5s all ease-in-out;
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    transition: 0.5s all ease-in-out;
+    background: #bbb;
+}
+
+::-webkit-scrollbar-track {
+    background: #fff
+}
+
+@keyframes unblur {
+    from {
+        filter: blur(10px);
+    }
+    to {
+        filter: blur(0px);
+    }
+}
+
+.pie{
+    animation: unblur 1.5s 1 forwards ease-in;
+    position: relative;
+    display: flex;
+
+    margin: auto;
+    margin-bottom: 10vh;
+    width: 75vw;
+    height: 75vh;
+    justify-content: center;
+
+    box-shadow: 0px 0px 60px white;
+}
+
+.header-container {
+    position: relative;
+    top: -10px;
+    left: -10px;
+    width: 100vw;
+
+    background: rgb(67,146,255);
+    background: linear-gradient(45deg, rgba(67,146,255,1) 0%, rgba(50,209,255,1) 100%);
+}
+
+.hint, .hint > * {
+    transition: 0.5s all ease-in-out;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+
+    color: var(--hover-black);
+    text-decoration: none;
+    font-size: 1em;
+}
+
+.hint > a:hover{
+    transition: 0.5s all ease-in-out;
+    margin-left: 50px;
+    transform: scaleX(2);
+    color: red;
+}
+
+.graph-title {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    color: white;
+
+    font-family: "Lexend Exa", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 40pt;
+    letter-spacing: 8px;
+}
+
+@keyframes animate-line {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.title-animated-line {
+    animation: animate-line 2s 1 forwards ease-in;
+    border: solid 3px white;
+    margin-bottom: 5vh;
+}
+
+.graph-info-container{
+    transition: 0.5s all ease-in-out;
+    position: relative;
+    display: block;
+
+    left: -10px;
+    width: 100vw;
+    height: fit-content;
+    padding: 1em;
+    margin-bottom: 25vh;
+
+    background: rgb(67,146,255);
+    background: linear-gradient(45deg, rgba(67,146,255,1) 0%, rgba(50,209,255,1) 100%);
+
+    font-size: 2em;
+    line-height: 200%;
+
+    filter: blur(5px);
+}
+
+.graph-info-container:hover {
+    transition: 0.5s all ease-in-out;
+    box-shadow: 0px 0px 100px rgba(50,209,255,1);
+    filter: blur(0px);
+}
+
+.graph-info-container span {
+    position: relative;
+    display: block;
+
+    margin-left: 15vw;
+    color: white;
+    font-weight: bold;
+}
+
+.parliament-header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    left: -10px;
+    width: 100vw;
+
+    background: rgb(255,175,0);
+    background: linear-gradient(106deg, rgba(255,175,0,1) 0%, rgba(255,215,50,1) 100%);
+
+    padding: 48px;
+    letter-spacing: 8px;
+    font-size: 100pt;
+    font-family: "Chakra Petch", serif;
+    font-weight: 500;
+}
+
+.parliament-header > span {
+    transform: scaleY(1.2);
+    background: linear-gradient(45deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.infotext {
+    position: relative;
+    display: block;
+    
+    margin-left: 25vw;
+    margin-right: 25vw;
+    margin-bottom: 10vh;
+    padding: 1em;
+}
+
+.infotext > h2 {
+    transition: 0.5s all ease-in-out;
+    color: var(--hover-black);
+    font-size: 28pt;
+}
+
+.infotext > h2:hover {
+    transition: 0.5s all ease-in-out;
+    color: red;
+}
+
+.infotext > p {
+    transition: 0.5s all ease-in-out;
+    color: var(--black);
+    font-size: 16pt;
+    font-weight: bold;
+    line-height: 200%;
+}
+
+.infotext > p:hover {
+    color: var(--hover-black);
+    text-shadow: 0px 0px 10px var(--hover-black-low-opac);
+    transform: scale(1.1);
+}
+
+.infotext > p > a {
+    transition: 0.5s all ease-in-out;
+    color: var(--hover-black);
+    font-size: 16pt;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.infotext > p > a:hover {
+    animation: anchor-base 6s infinite forwards;
+}
+
+.parliament-container {
+    position: relative;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    margin-left: 25vw;
+    margin-right: 25vw;
+    line-height: 200%;
+
+    padding: 1em;
+    background-color: var(--project-background);
+    border: 3px solid var(--black);
+    border-radius: 20px;
+    color: white;
+}
+
+.coalition-container {
+    position: relative;
+    display: flex;
+
+    gap: 2em;
+}
+
+.coalition-party {
+    position: relative;
+    font-size: 18pt;
+    font-weight: bold;
+}
+
+.coalition-result {
+    animation: anchor-base 6s infinite forwards;
+    font-size: 18pt;
+    font-weight: bold;
+    -webkit-text-stroke: 1px black;
+}
+
+.footer-template {
+    gap: 32px;
+}
+
+.social-media {
+    transition: 0.5s all ease-in-out;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+
+    max-height: 64px;
+    filter: blur(2px);
+    color: var(--white);
+}
+
+.social-media:hover {
+    transition: 0.5s all ease-in-out;
+    transform: scale(1.1);
+    filter: blur(0px);
+}
+
+.social-media > img {
+    height: 64px;
+    width: 64px;
+}
+
+.social-media > span {
+    font-size: 24pt;
+    font-weight: bold;
+}

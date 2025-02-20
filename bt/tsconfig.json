@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "allowJs": true,
+        "module": "esnext",
+        "target": "es6",
+        "strict": true,
+        "esModuleInterop": true,
+        "moduleResolution": "node"
+    },
+    "include": ["MainAgent.ts", "CoalitionFinder.ts"]
+}

@@ -1,0 +1,59 @@
+:root{
+    --white: #fff;
+    --black: #000;
+    --dark-hover-black: #333;
+    --hover-black: #666;
+    --hover-black-low-opac: #66666660;
+    --light-gray1: #ddd;
+    --project-background: #303030;
+    --project-dark: #101010;
+}
+
+html{
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--light-gray1)
+}
+
+.footer-template {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 16px;
+    
+    padding: 2vh;
+    left: -10px;
+    bottom: -10px;
+    width: 101vw;
+    background-color: var(--black);
+}
+
+
+@keyframes anchor-base {
+    20% {
+        text-shadow: 0 0 10px rgb(255, 0, 0);
+        color: rgb(255, 0, 0);
+    }
+    40% {
+        text-shadow: 0 0 10px rgb(255, 255, 0);
+        color: rgb(255, 255, 0);
+    }
+    60% {
+        text-shadow: 0 0 10px rgb(0, 255, 0);
+        color: rgb(0, 255, 0);
+    }
+    80% {
+        text-shadow: 0 0 10px rgb(0, 0, 255);
+        color: rgb(0, 0, 255);
+    }
+    100% {
+        text-shadow: 0 0 10px rgb(0, 255, 255);
+        color: rgb(0, 255, 255);
+    }
+}
