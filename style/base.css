@@ -1,12 +1,30 @@
 :root{
     --white: #fff;
     --black: #000;
-    --dark-hover-black: #333;
-    --hover-black: #666;
+
+    --dark-hover-black: #222;
+    --hover-black: #455;
     --hover-black-low-opac: #66666660;
+
     --light-gray1: #ddd;
+    --light-gray2: #bbb;
+    
+    --gray: #aeaeae;
+
     --project-background: #303030;
     --project-dark: #101010;
+
+    --dark-red: rgb(180, 0, 0);
+    --red: red;
+
+    --dark-sky-blue: rgb(60, 120, 180);
+
+    --header-background: rgb(67,146,255);
+    --header-gradient: linear-gradient(45deg, rgba(67,146,255,1) 0%, rgba(50,209,255,1) 100%);
+    --bright-sky-blue: rgba(50,209,255,1); 
+
+    --bright-orange: rgb(255,175,0);
+    --bright-orange-gradient: linear-gradient(106deg, rgba(255,175,0,1) 0%, rgba(255,215,50,1) 100%);
 }
 
 html{

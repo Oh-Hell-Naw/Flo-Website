@@ -1,4 +1,4 @@
-export async function generate_pie_graph(x_array: Array<string[]>, y_array: Array<string[]>, color_array: string[], title: string[]) {
+export async function generate_pie_graph(x_array: Array<string[]>, y_array: Array<string[]>, color_array: string[], title: string) {
     console.log(title);
     const layout = {
         autosize: true,  // Automatically adjust to the div size
@@ -12,7 +12,7 @@ export async function generate_pie_graph(x_array: Array<string[]>, y_array: Arra
             }
         },
     };
-
+    
     const data = [
         {
             labels:x_array, 
@@ -37,5 +37,5 @@ export async function generate_pie_graph(x_array: Array<string[]>, y_array: Arra
         displayModeBar: true,
     }
 
-    Plotly.newPlot("pie", data, layout);
+    window.Plotly.newPlot("pie", data, layout);
 }

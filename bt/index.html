@@ -6,21 +6,52 @@
         <link rel="stylesheet" href="../style/style_bt.css">
         <link rel="icon" href="../assets/star.png">
         <script src="https://cdn.plot.ly/plotly-3.0.0.min.js"></script>
-        <title>BT - Prognosen</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <title>OHN - Wahlprognosen</title>
     </head>
     <body>
+        <nav class="navbar">
+            <a class="navbar-button-container" href="#">
+                <img class="navbar-button-icon" src="../assets/arrow_up.svg">
+                <span class="navbar-button-link">Zurück</span>
+            </a>
+            <a class="navbar-button-container" href="../index.html">
+                <img class="navbar-button-icon" src="../assets/home.svg">
+                <span class="navbar-button-link">Home</span>
+            </a>
+            <a class="navbar-button-container" href="./blog/index.html">
+                <img class="navbar-button-icon" src="../assets/newspaper.svg">
+                <span class="navbar-button-link">Blog</span>
+            </a>
+            <a class="navbar-button-container" href="#footer">
+                <img class="navbar-button-icon" src="../assets/arrow_down.svg">
+                <span class="navbar-button-link">Nach unten</span>
+            </a>
+        </nav>
         <div class="header-container">
             <span class="graph-title"></span>
             <hr class="title-animated-line">
         </div>
+
         <div class="graph-container">
             <span class="hint">Erstellt mit Hilfe von: <a href="https://api.dawum.de">api.dawum.de</a></span>
             <div class="pie" id="pie"></div>
-        
-        <section class="infotext">
-            <h2>Infotext</h2>
-            <p>In diesem Kuchendiagramm können Sie die neusten Wahlprognosen einer bevorstehenden Wahl sehen. Dazu gehören z.B. der Bundestag, die Hamburger Bürgerschaft und weitere politische Wahlen in den unterschiedlichen Bundesländern. Um alle öffentlichen Projekte dieses Entwicklers anzusehen, klicken Sie <a href="https://github.com/Floerianc" target="_blank">hier.</a></p>
-        </section>
+            </div>
+        </div>
+
+        <div class="additional-buttons">
+            <button class="detailed-info-button">Erweitert</button>
+            <select class="dropdown-select" onchange="select_parliament()"></select>
+        </div>
+
+        <div class="detailed-info-container">
+            <p>Achtung! Rundungsfehler möglich!</p>
+        </div>
+
+            <section class="infotext">
+                <h2>Infotext</h2>
+                <p>In diesem Kuchendiagramm können Sie die neusten Wahlprognosen einer bevorstehenden Wahl sehen. Dazu gehören z.B. der Bundestag, die Hamburger Bürgerschaft und weitere politische Wahlen in den unterschiedlichen Bundesländern. Um alle öffentlichen Projekte dieses Entwicklers anzusehen, klicken Sie <a href="https://github.com/Floerianc" target="_blank">hier.</a></p>
+            </section>
 
             <div class="graph-info-container">
                 <span id="survey-date"></span>
@@ -41,11 +72,8 @@
         </section>
 
         <div class="parliament-container"></div>
-        <script src="./dist/MainAgent.js" type="module"></script>
-        <script src="./dist/CoalitionFinder.js" type="module"></script>
-        <script src="./dist/PieGenerator.js" type="module"></script>
 
-        <footer class="footer-template">
+        <footer class="footer-template" id="footer">
             <a class="social-media" href="https://discord.com/users/1088952298962681946" target="_blank">
                 <img src="../assets/icons/discord-mark-white.svg" class="social-media-logo"></img>
                 <span>Discord</span>
@@ -59,5 +87,12 @@
                 <span>Steam</span>
             </a>
         </footer>
+
+        <!-- Scripts moved to bottom so functions can be called -->
+        <!-- If called in head where the document is not loaded it causes errors -->
+        <script src="./dist/MainAgent.js" type="module" defer></script>
+        <script src="./dist/CoalitionFinder.js" type="module" defer></script>
+        <script src="./dist/ParliamentAgent.js" type="module" defer></script>
+        <script src="./dist/PieGenerator.js" type="module" defer></script>
     </body>
 </html>

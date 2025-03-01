@@ -44,6 +44,6 @@ export function generate_pie_graph(x_array, y_array, color_array, title) {
             scrollZoom: true,
             displayModeBar: true,
         };
-        Plotly.newPlot("pie", data, layout);
+        window.Plotly.newPlot("pie", data, layout);
     });
 }

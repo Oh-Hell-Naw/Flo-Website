@@ -6,7 +6,7 @@
         "target": "es6",
         "strict": true,
         "esModuleInterop": true,
-        "moduleResolution": "node"
+        "moduleResolution": "node",
     },
-    "include": ["MainAgent.ts", "CoalitionFinder.ts"]
+    "include": ["MainAgent.ts", "CoalitionFinder.ts", "ParliamentAgent.ts"]
 }
