@@ -7,6 +7,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+/**
+ * Generates a pie graph with the given x- and y-array, array of colors and title
+ * @param x_array array of names for the "x"-axis
+ * @param y_array array of values for the "y"-axis
+ * @param color_array array of names for the colors and their corresponding x-values
+ * @param title title of the pie graph
+ */
 export function generate_pie_graph(x_array, y_array, color_array, title) {
     return __awaiter(this, void 0, void 0, function* () {
         console.log(title);

@@ -240,7 +240,6 @@
 
 .detailed-info-container:hover > p {
     transition: 0.5s all ease-in-out;
-    filter: blur(0px);
 }
 
 .detailed-info-container > span {
@@ -259,7 +258,6 @@
     font-size: 18pt;
     font-weight: bolder;
     color: var(--red);
-    filter: blur(4px);
 }
 
 .hint, .hint > * {
@@ -276,7 +274,8 @@
 
 .hint > a:hover{
     transition: 0.5s all ease-in-out;
-    margin-left: 50px;
+    margin-left: 110px;
+    margin-right: 80px;
     transform: scaleX(2);
     color: var(--red);
 }
@@ -326,14 +325,11 @@
 
     font-size: 2em;
     line-height: 200%;
-
-    filter: blur(5px);
 }
 
 .graph-info-container:hover {
     transition: 0.5s all ease-in-out;
     box-shadow: 0px 0px 100px var(--bright-sky-blue);
-    filter: blur(0px);
 }
 
 .graph-info-container span {
@@ -455,6 +451,111 @@
     -webkit-text-stroke: 1px var(--black);
 }
 
+.coalition-checkbox-container {
+    transition: 0.15s all ease-in-out;
+    position: relative;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.coalition-checkbox-container:hover {
+    color: var(--gray);
+}
+
+.coalition-checkbox-container:hover > input {
+    background-color: var(--gray);
+}
+
+.coalition-checkbox {
+    position: relative;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.coalition-checkbox {
+    transition: 0.15s all ease-in-out;
+    position: relative;
+    justify-self: left;
+
+    width: 32px;
+    height: 32px;
+    background-color: var(--white);
+    margin-right: 1rem;
+}
+
+.coalition-checkbox:checked {
+    background-color: var(--bright-sky-blue);
+}
+
+.coalition-checkbox-label {
+    padding-left: 1rem;
+    font-family: "Lato", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 18pt;
+}
+
+.parliament-visual {
+    position: relative;
+    display: flex;
+
+    padding: 2em;
+    margin-left: auto;
+    margin-right: auto;
+
+    height: 20vh;
+    width: 50vw;
+
+    background-color: var(--white);
+}
+
+.parliament-bar-container {
+    transition: 0.5s all ease-in-out;
+    position: relative;
+
+    border: 3px solid black;
+    border-radius: 16px;
+
+    width: 100%;
+    height: 40%;
+
+    background-color: var(--light-gray1);
+}
+
+.parliament-bar-container:hover {
+    box-shadow: 0px 0px 35px rgb(173,146,174);
+}
+
+.parliament-bar-progress {
+    transition: 0.4s all ease-in-out;
+    position: relative;
+    display: flex;
+
+    width: 0%;
+    height: 100%;
+    border-radius: 16px;
+
+    background: rgb(173,146,174);
+    background: linear-gradient(106deg, rgba(173,146,174,1) 0%, rgba(225,166,173,1) 100%);
+}
+
+.parliament-bar-label {
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    margin-top: 5vh;
+    width: 100%;
+    height: 100%;
+
+    font-family: "Lato", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 42pt;
+}
+
+
 .footer-template {
     gap: 32px;
 }
@@ -469,7 +570,6 @@
     gap: 16px;
 
     max-height: 64px;
-    filter: blur(2px);
     color: var(--white);
 
     text-decoration: none;
@@ -478,7 +578,6 @@
 .social-media:hover {
     transition: 0.5s all ease-in-out;
     transform: scale(1.1);
-    filter: blur(0px);
 }
 
 .social-media > img {

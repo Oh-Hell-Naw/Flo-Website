@@ -7,8 +7,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+// IMPORTS
 import { JSONdata, get_recent_survey, get_name, load_survey, } from "./MainAgent.js";
-function setup_options() {
+/**
+ * Creates an option in the dropdown menu for every parliament
+ */
+export function setup_options() {
     return __awaiter(this, void 0, void 0, function* () {
         const json = JSONdata;
         const parliaments = json['Parliaments'];
@@ -34,6 +38,11 @@ function setup_options() {
         }
     });
 }
+/**
+ * Gets the most recent survey from a specific parliament
+ * @param parliament name of the parliament
+ * @returns The most recent survey from that parliament as Survey
+ */
 function get_specifc_survey(parliament) {
     return __awaiter(this, void 0, void 0, function* () {
         const json = JSONdata;
@@ -48,7 +57,10 @@ function get_specifc_survey(parliament) {
         }
     });
 }
-function select_parliament() {
+/**
+ * Selects and loads survey of the selected parliament
+ */
+export function select_parliament() {
     return __awaiter(this, void 0, void 0, function* () {
         const element = document.querySelector(".dropdown-select");
         if (element) {
@@ -63,5 +75,3 @@ function select_parliament() {
         }
     });
 }
-setup_options();
-window.select_parliament = select_parliament; // sets select_parliament to global scope in document

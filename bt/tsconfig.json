@@ -8,5 +8,5 @@
         "esModuleInterop": true,
         "moduleResolution": "node",
     },
-    "include": ["MainAgent.ts", "CoalitionFinder.ts", "ParliamentAgent.ts"]
+    "include": ["src/MainAgent.ts", "src/CoalitionFinder.ts", "src/ParliamentAgent.ts", "src/PieGenerator.ts"]
 }

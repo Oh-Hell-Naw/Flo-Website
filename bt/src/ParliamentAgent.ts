@@ -1,3 +1,4 @@
+// IMPORTS
 import { 
     JSONdata,
     Survey,
@@ -6,7 +7,10 @@ import {
     load_survey,
 } from "./MainAgent.js";
 
-async function setup_options() {
+/**
+ * Creates an option in the dropdown menu for every parliament
+ */
+export async function setup_options() {
     const json = JSONdata;
     const parliaments = json['Parliaments'];
     const menu = document.querySelector(".dropdown-select");
@@ -33,6 +37,11 @@ async function setup_options() {
     }
 }
 
+/**
+ * Gets the most recent survey from a specific parliament
+ * @param parliament name of the parliament
+ * @returns The most recent survey from that parliament as Survey
+ */
 async function get_specifc_survey(parliament: string) {
     const json = JSONdata;
     const surveys_object = json['Surveys'];
@@ -47,7 +56,10 @@ async function get_specifc_survey(parliament: string) {
     }
 }
 
-async function select_parliament() {
+/**
+ * Selects and loads survey of the selected parliament
+ */
+export async function select_parliament() {
     const element = document.querySelector(".dropdown-select") as HTMLSelectElement | null;
     if (element) {
         const value = element.value;
@@ -57,6 +69,3 @@ async function select_parliament() {
         console.warn("Element not found");
     }
 }
-
-setup_options();
-(window as any).select_parliament = select_parliament; // sets select_parliament to global scope in document

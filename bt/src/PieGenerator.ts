@@ -1,3 +1,10 @@
+/**
+ * Generates a pie graph with the given x- and y-array, array of colors and title
+ * @param x_array array of names for the "x"-axis
+ * @param y_array array of values for the "y"-axis
+ * @param color_array array of names for the colors and their corresponding x-values
+ * @param title title of the pie graph
+ */
 export async function generate_pie_graph(x_array: Array<string[]>, y_array: Array<string[]>, color_array: string[], title: string) {
     console.log(title);
     const layout = {

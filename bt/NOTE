@@ -1,0 +1,12 @@
+coalition:
+    - nicht ausschließlich bundestag zeigen, sondern auch für die anderen parlamente
+    - animations
+
+neue docs:
+    - mark imports
+    - mark globals
+    - add docstrings (ts docstrings?)
+
+blog:
+    - neue blogeinträge
+    - neues design
