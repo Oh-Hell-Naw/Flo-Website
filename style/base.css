@@ -1,11 +1,13 @@
 :root{
     --white: #fff;
+    --dark-text: #222;
     --black: #000;
 
     --dark-hover-black: #222;
     --hover-black: #555;
     --hover-black-low-opac: #66666660;
 
+    --lightest-gray: #f2f4f9;
     --light-gray1: #ddd;
     --light-gray2: #bbb;
     

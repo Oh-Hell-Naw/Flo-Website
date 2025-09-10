@@ -1,32 +1,36 @@
 const url = 'https://api.github.com/users/floerianc/repos?sort=created&per_page=5';
 
-function extractRepos(repos: any[]): Array<any> {
-    let extractedRepos = Array();
+interface GithubRepo {
+    name: string;
+    url: string;
+    description: string;
+    stars: number;
+    updated_at: string;
+}
 
-    for (let index = 0; index < 5; index++) {
-        let current_repo = repos[index];
+function extractRepos(repos: any[]): Array<GithubRepo> {
+    let extractedRepos: Array<GithubRepo> = [];
+    repos.forEach(currentRepo => {
         extractedRepos.push({
-                name: current_repo.name,
-                url: current_repo.html_url,
-                description: current_repo.description,
-                stars: current_repo.stargazers_count,
-                updated_at: current_repo.updated_at
-            });
-    }
+            name: currentRepo.name,
+            url: currentRepo.html_url,
+            description: currentRepo.description,
+            stars: currentRepo.stargazers_count,
+            updated_at: currentRepo.updated_at
+        });
+    });
     return extractedRepos;
 }
 
-async function getRepos(): Promise<any[]> {
-    let response = (await fetch(url));
+async function getRepos(): Promise<Array<GithubRepo>> {
+    const response = (await fetch(url));
     if (!response.ok) { 
         throw new Error(`GitHub API error: ${response.status}`); // $fstring
     }
-    let repos = await response.json();
-    let info = extractRepos(repos);
-    return info;
+    return extractRepos(await response.json());
 }
 
-function displayRepos(repos: any[]): void {
+function displayRepos(repos: Array<GithubRepo>): void {
     const container = document.querySelector(".page-container"); // selects .page-container from the HTML
     if (!container) {
         throw new Error("No container found");
@@ -34,6 +38,9 @@ function displayRepos(repos: any[]): void {
     container.innerHTML = ""; // Clear existing content
 
     repos.forEach(repo => { // forEach(callback) 
+        const isoDate = new Date(repo.updated_at)
+        const dateString = isoDate.toDateString()
+
         const projectElement = document.createElement("a"); // create anchor element
         projectElement.classList.add("project");
         projectElement.href = repo.url;
@@ -41,7 +48,7 @@ function displayRepos(repos: any[]): void {
 
         projectElement.innerHTML = `
             <header>${repo.name}</header><br>
-            <span>Last updated: ${repo.updated_at}</span><br>
+            <span>Last updated: ${dateString}</span><br>
             <span>⭐ ${repo.stars}</span><br>
         `;
 

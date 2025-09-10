@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -37,35 +36,32 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var url = 'https://api.github.com/users/floerianc/repos?sort=created&per_page=5';
 function extractRepos(repos) {
-    var extractedRepos = Array();
-    for (var index = 0; index < 5; index++) {
-        var current_repo = repos[index];
+    var extractedRepos = [];
+    repos.forEach(function (currentRepo) {
         extractedRepos.push({
-            name: current_repo.name,
-            url: current_repo.html_url,
-            description: current_repo.description,
-            stars: current_repo.stargazers_count,
-            updated_at: current_repo.updated_at
+            name: currentRepo.name,
+            url: currentRepo.html_url,
+            description: currentRepo.description,
+            stars: currentRepo.stargazers_count,
+            updated_at: currentRepo.updated_at
         });
-    }
+    });
     return extractedRepos;
 }
 function getRepos() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, repos, info;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var response, _a;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0: return [4 /*yield*/, fetch(url)];
                 case 1:
-                    response = (_a.sent());
+                    response = (_b.sent());
                     if (!response.ok) {
                         throw new Error("GitHub API error: ".concat(response.status)); // $fstring
                     }
+                    _a = extractRepos;
                     return [4 /*yield*/, response.json()];
-                case 2:
-                    repos = _a.sent();
-                    info = extractRepos(repos);
-                    return [2 /*return*/, info];
+                case 2: return [2 /*return*/, _a.apply(void 0, [_b.sent()])];
             }
         });
     });
@@ -77,11 +73,13 @@ function displayRepos(repos) {
     }
     container.innerHTML = ""; // Clear existing content
     repos.forEach(function (repo) {
+        var isoDate = new Date(repo.updated_at);
+        var dateString = isoDate.toDateString();
         var projectElement = document.createElement("a"); // create anchor element
         projectElement.classList.add("project");
         projectElement.href = repo.url;
         projectElement.target = "_blank"; // Open in a new tab
-        projectElement.innerHTML = "\n            <header>".concat(repo.name, "</header><br>\n            <span>Last updated: ").concat(repo.updated_at, "</span><br>\n            <span>\u2B50 ").concat(repo.stars, "</span><br>\n        ");
+        projectElement.innerHTML = "\n            <header>".concat(repo.name, "</header><br>\n            <span>Last updated: ").concat(dateString, "</span><br>\n            <span>\u2B50 ").concat(repo.stars, "</span><br>\n        ");
         container.appendChild(projectElement);
     });
 }
