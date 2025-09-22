@@ -95,10 +95,10 @@ function displayRepos(repos, amount) {
 }
 function getRepoDisplayAmount() {
     var path = window.location.pathname;
-    if (path === "/fl/index.html") {
+    if (path === "/fl/index.html" || path === "/fl/") {
         return 7;
     }
-    else if (path === "/index.html") {
+    else if (path === "/index.html" || path === "/") {
         return 3;
     }
     return null; // Show all by default
