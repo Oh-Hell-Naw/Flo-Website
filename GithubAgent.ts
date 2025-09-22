@@ -71,9 +71,9 @@ function displayRepos(
 
 function getRepoDisplayAmount(): number | null {
     const path = window.location.pathname;
-    if (path === "/fl/index.html" || path === "/fl/") {
+    if (path === "/fl/index.html") {
         return 7;
-    } else if (path === "/index.html" || path === "/") {
+    } else if (path === "/index.html") {
         return 3;
     }
     return null; // Show all by default
