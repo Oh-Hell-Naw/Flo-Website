@@ -69,14 +69,19 @@ function displayRepos(
     }
 }
 
-function getRepoDisplayAmount(): number | null {
+const getRepoDisplayAmount = (): number | null => {
     const path = window.location.pathname;
-    if (path === "/fl/index.html" || path === "/fl/") {
-        return 7;
-    } else if (path === "/index.html" || path === "/") {
-        return 3;
-    }
-    return null; // Show all by default
+    if (path === "/fl/index.html" || path === "/fl/") return 7;
+    else if (path === "/index.html" || path === "/") return 3;
+    else return null; // Show all by default
 }
 
-getRepos().then(repos => displayRepos(repos, getRepoDisplayAmount())).catch(error => console.error(error));
+async function main(): Promise<void> {
+    try {
+        displayRepos(await getRepos(), getRepoDisplayAmount());
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+main()

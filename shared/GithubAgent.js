@@ -93,14 +93,34 @@ function displayRepos(repos, amount) {
         }
     }
 }
-function getRepoDisplayAmount() {
+var getRepoDisplayAmount = function () {
     var path = window.location.pathname;
-    if (path === "/fl/index.html" || path === "/fl/") {
+    if (path === "/fl/index.html" || path === "/fl/")
         return 7;
-    }
-    else if (path === "/index.html" || path === "/") {
+    else if (path === "/index.html" || path === "/")
         return 3;
-    }
-    return null; // Show all by default
+    else
+        return null; // Show all by default
+};
+function main() {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 2, , 3]);
+                    _a = displayRepos;
+                    return [4 /*yield*/, getRepos()];
+                case 1:
+                    _a.apply(void 0, [_b.sent(), getRepoDisplayAmount()]);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _b.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
 }
-getRepos().then(function (repos) { return displayRepos(repos, getRepoDisplayAmount()); }).catch(function (error) { return console.error(error); });
+main();
