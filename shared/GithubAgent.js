@@ -34,7 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var url = 'https://api.github.com/users/floerianc/repos?sort=created&per_page=5';
+var url = 'https://api.github.com/users/floerianc/repos?sort=created&per_page=10';
 function extractRepos(repos) {
     var extractedRepos = [];
     repos.forEach(function (currentRepo) {
@@ -66,21 +66,41 @@ function getRepos() {
         });
     });
 }
-function displayRepos(repos) {
-    var container = document.querySelector(".page-container"); // selects .page-container from the HTML
+function addRepo(repo, container) {
+    var isoDate = new Date(repo.updated_at);
+    var dateString = isoDate.toDateString();
+    var projectElement = document.createElement("a"); // create anchor element
+    projectElement.classList.add("project");
+    projectElement.href = repo.url;
+    projectElement.target = "_blank"; // Open in a new tab
+    projectElement.innerHTML = "\n        <header>".concat(repo.name, "</header><br>\n        <span>Last updated: ").concat(dateString, "</span><br>\n        <span>\u2B50 ").concat(repo.stars, "</span><br>\n    ");
+    container.appendChild(projectElement);
+}
+function displayRepos(repos, amount) {
+    var container = document.querySelector(".page-container");
     if (!container) {
         throw new Error("No container found");
     }
-    container.innerHTML = ""; // Clear existing content
-    repos.forEach(function (repo) {
-        var isoDate = new Date(repo.updated_at);
-        var dateString = isoDate.toDateString();
-        var projectElement = document.createElement("a"); // create anchor element
-        projectElement.classList.add("project");
-        projectElement.href = repo.url;
-        projectElement.target = "_blank"; // Open in a new tab
-        projectElement.innerHTML = "\n            <header>".concat(repo.name, "</header><br>\n            <span>Last updated: ").concat(dateString, "</span><br>\n            <span>\u2B50 ").concat(repo.stars, "</span><br>\n        ");
-        container.appendChild(projectElement);
-    });
+    container.innerHTML = "";
+    if (!amount) {
+        repos.forEach(function (repo) {
+            addRepo(repo, container);
+        });
+    }
+    else {
+        for (var i = 0; i < amount && i < repos.length; i++) {
+            addRepo(repos[i], container);
+        }
+    }
 }
-getRepos().then(function (repos) { return displayRepos(repos); }).catch(function (error) { return console.error(error); });
+function getRepoDisplayAmount() {
+    var path = window.location.pathname;
+    if (path === "/fl/index.html") {
+        return 7;
+    }
+    else if (path === "/index.html") {
+        return 3;
+    }
+    return null; // Show all by default
+}
+getRepos().then(function (repos) { return displayRepos(repos, getRepoDisplayAmount()); }).catch(function (error) { return console.error(error); });

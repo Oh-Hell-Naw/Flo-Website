@@ -1,4 +1,4 @@
-const url = 'https://api.github.com/users/floerianc/repos?sort=created&per_page=5';
+const url = 'https://api.github.com/users/floerianc/repos?sort=created&per_page=10';
 
 interface GithubRepo {
     name: string;
@@ -30,30 +30,53 @@ async function getRepos(): Promise<Array<GithubRepo>> {
     return extractRepos(await response.json());
 }
 
-function displayRepos(repos: Array<GithubRepo>): void {
-    const container = document.querySelector(".page-container"); // selects .page-container from the HTML
+function addRepo(
+    repo: GithubRepo,
+    container: Element
+): void {
+    const isoDate = new Date(repo.updated_at)
+    const dateString = isoDate.toDateString()
+    const projectElement = document.createElement("a"); // create anchor element
+    projectElement.classList.add("project");
+    projectElement.href = repo.url;
+    projectElement.target = "_blank"; // Open in a new tab
+    projectElement.innerHTML = `
+        <header>${repo.name}</header><br>
+        <span>Last updated: ${dateString}</span><br>
+        <span>⭐ ${repo.stars}</span><br>
+    `;
+    container.appendChild(projectElement);
+}
+
+function displayRepos(
+    repos: Array<GithubRepo>,
+    amount: number | null
+): void {
+    const container = document.querySelector(".page-container");
     if (!container) {
         throw new Error("No container found");
     }
-    container.innerHTML = ""; // Clear existing content
+    container.innerHTML = "";
 
-    repos.forEach(repo => { // forEach(callback) 
-        const isoDate = new Date(repo.updated_at)
-        const dateString = isoDate.toDateString()
-
-        const projectElement = document.createElement("a"); // create anchor element
-        projectElement.classList.add("project");
-        projectElement.href = repo.url;
-        projectElement.target = "_blank"; // Open in a new tab
-
-        projectElement.innerHTML = `
-            <header>${repo.name}</header><br>
-            <span>Last updated: ${dateString}</span><br>
-            <span>⭐ ${repo.stars}</span><br>
-        `;
-
-        container.appendChild(projectElement);
-    });
+    if (!amount) {
+        repos.forEach(repo => {
+            addRepo(repo, container)
+        });
+    } else {
+        for (let i = 0; i < amount && i < repos.length; i++) {
+            addRepo(repos[i], container)
+        }
+    }
 }
 
-getRepos().then(repos => displayRepos(repos)).catch(error => console.error(error));
+function getRepoDisplayAmount(): number | null {
+    const path = window.location.pathname;
+    if (path === "/fl/index.html") {
+        return 7;
+    } else if (path === "/index.html") {
+        return 3;
+    }
+    return null; // Show all by default
+}
+
+getRepos().then(repos => displayRepos(repos, getRepoDisplayAmount())).catch(error => console.error(error));
